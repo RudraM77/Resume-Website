@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rudra Midda — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: #2a2a2a;
+      --accent: #e63946;
+      --accent2: #ff6b35;
+      --text: #f0ece4;
+      --muted: #888;
+      --display: 'Bebas Neue', sans-serif;
+      --body: 'Inter', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-name {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-name span { color: var(--accent); }
+
+    nav ul { list-style: none; display: flex; gap: 0.2rem; }
+
+    nav ul a {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    nav ul a:hover { color: var(--text); background: var(--surface2); }
+    nav ul a.active { color: var(--accent); }
+
+    /* ── HERO ── */
+    header {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      align-items: center;
+    }
+
+    .hero-left { }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 1.4s infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.2; } }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(4rem, 9vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 .line2 { color: var(--accent); display: block; }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-red { background: var(--accent); color: #fff; }
+    .btn-red:hover { background: #c0272f; }
+
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--text); }
+
+    /* Photo */
+    .hero-photo {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+
+    .photo-frame {
+      width: 300px; height: 370px;
+      position: relative;
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid var(--accent);
+      transform: translate(12px, 12px);
+      z-index: 0;
+    }
+
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      position: relative;
+      z-index: 1;
+      filter: grayscale(20%);
+    }
+
+    .photo-badge {
+      position: absolute;
+      bottom: -1rem; left: -1rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.9rem;
+      z-index: 2;
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex; align-items: baseline; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p strong { color: var(--text); }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 1.8rem 1.5rem;
+    }
+
+    .stat-n {
+      font-family: var(--display);
+      font-size: 3rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-l {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    article.edu {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    article.edu:hover { border-color: var(--accent); }
+
+    article.edu::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -0.5rem; right: 1rem;
+      font-family: var(--display);
+      font-size: 6rem;
+      color: var(--surface2);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .edu-badge {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .edu-degree {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-school {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .edu-detail {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ── SKILLS TABLE ── */
+    .table-scroll { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    thead tr { background: var(--surface2); }
+
+    thead th {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 1rem 1.2rem;
+      text-align: left;
+      font-weight: 400;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    tbody tr:hover { background: var(--surface); }
+
+    tbody td { padding: 0.9rem 1.2rem; color: var(--text); vertical-align: middle; }
+
+    .pip-row { display: flex; gap: 4px; }
+    .pip { width: 12px; height: 12px; border: 1.5px solid #333; }
+    .pip.on { background: var(--accent); border-color: var(--accent); }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      margin: 2px;
+    }
+
+    /* ── HOBBIES ── */
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .hobby {
+      background: var(--surface);
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: background 0.2s;
+    }
+
+    .hobby:hover { background: var(--surface2); }
+
+    .hobby-icon { font-size: 1.8rem; }
+
+    .hobby-name {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    .hobby-desc {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── CONTACT BAND ── */
+    .contact-band {
+      background: var(--accent);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .contact-band h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      letter-spacing: 0.06em;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-band p {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-links {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;
+    }
+
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.8rem 1.6rem;
+      background: rgba(0,0,0,0.25);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: background 0.2s;
+    }
+
+    .contact-link:hover { background: rgba(0,0,0,0.45); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1.5rem; flex-wrap: wrap;
+    }
+
+    .footer-name {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade { animation: fadeUp 0.6s ease both; }
+    .fade:nth-child(1) { animation-delay: 0.1s; }
+    .fade:nth-child(2) { animation-delay: 0.25s; }
+    .fade:nth-child(3) { animation-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      header { grid-template-columns: 1fr; min-height: auto; padding-top: 3rem; }
+      .hero-photo { margin-top: 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .edu-cards { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#top" class="nav-name">RUDRA <span>MIDDA</span></a>
+    <ul>
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#hobbies">Interests</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO / HEADER -->
+  <header id="top">
+    <div class="hero-left fade">
+      <div class="hero-tag">Available from 2028</div>
+      <h1>RUDRA<span class="line2">MIDDA</span></h1>
+      <p class="hero-sub">
+        Dual-degree student studying Automobile Engineering at MIT Manipal &amp; Business at IIM Bangalore — building the skills to one day run my own venture.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-red">Get In Touch</a>
+        <a href="#education" class="btn btn-ghost">My Education</a>
+      </div>
+    </div>
+    <div class="hero-photo fade">
+      <div class="photo-frame">
+        <img src="./images/photo.jpg" alt="Rudra Midda">
+        <span class="photo-badge">Udupi, Karnataka 🇮🇳</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-head">
+      <span class="section-num">01 //</span>
+      <h2>ABOUT ME</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Hey, I'm <strong>Rudra</strong> — a student on an ambitious path, juggling two undergraduate degrees at once. I'm studying <strong>Automobile Engineering at MIT Manipal</strong> while simultaneously pursuing a <strong>BBA in Digital Business &amp; Entrepreneurship at IIM Bangalore</strong>.</p>
+        <p>My goal is simple: <strong>start my own business</strong>. I want to combine my technical knowledge of machines with the business skills I'm learning at IIMB to build something meaningful — whether that's in the automotive space, tech, or wherever the right opportunity shows up.</p>
+        <p>I'm drawn to how things work — engines, markets, ideas. Outside the classroom I stay curious through cars, music, travel, and staying active.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-n">2</span>
+          <span class="stat-l">Degrees at once</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">2028</span>
+          <span class="stat-l">Expected graduation</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">MIT</span>
+          <span class="stat-l">Manipal, Karnataka</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">IIM</span>
+          <span class="stat-l">Bangalore</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-head">
+      <span class="section-num">02 //</span>
+      <h2>EDUCATION</h2>
+    </div>
+    <div class="edu-cards">
+
+      <article class="edu" data-num="01">
+        <span class="edu-badge">Engineering · 2024 – 2028</span>
+        <h3 class="edu-degree">B.Tech — Automobile Engineering</h3>
+        <p class="edu-school">Manipal Institute of Technology, Manipal (MIT Manipal)</p>
+        <p class="edu-detail">
+          A four-year engineering programme covering vehicle design, mechanics, powertrains, automotive electronics, and manufacturing. Combines core engineering fundamentals with specialised automotive applications.
+        </p>
+      </article>
+
+      <article class="edu" data-num="02">
+        <span class="edu-badge">Business · 2025 – 2028</span>
+        <h3 class="edu-degree">BBA — Digital Business &amp; Entrepreneurship</h3>
+        <p class="edu-school">Indian Institute of Management Bangalore (IIMB)</p>
+        <p class="edu-detail">
+          A business programme from one of India's top management schools, focused on entrepreneurship, digital strategy, marketing, finance, and building ventures in the modern economy.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SKILLS TABLE -->
+  <section class="section" id="skills">
+    <div class="section-head">
+      <span class="section-num">03 //</span>
+      <h2>SKILLS &amp; TOOLS</h2>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <caption style="caption-side:bottom;font-family:var(--mono);font-size:0.62rem;color:var(--muted);padding-top:0.8rem;text-align:right;letter-spacing:0.08em;">
+          Based on coursework &amp; self-learning · Updated 2026
+        </caption>
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Area</th>
+            <th>Level</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Engineering Drawing &amp; CAD</strong></td>
+            <td><span class="tag">Automotive</span></td>
+            <td><div class="pip-row"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div><div class="pip"></div></div></td>
+            <td>MIT Manipal</td>
+          </tr>
+          <tr>
+            <td><strong>Vehicle Mechanics &amp; Dynamics</strong></td>
+            <td><span class="tag">Automotive</span></td>
+            <td><div class="pip-row"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div><div class="pip"></div></div></td>
+            <td>MIT Manipal</td>
+          </tr>
+          <tr>
+            <td><strong>Business Strategy</strong></td>
+            <td><span class="tag">Business</span></td>
+            <td><div class="pip-row"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div><div class="pip"></div></div></td>
+            <td>IIM Bangalore</td>
+          </tr>
+          <tr>
+            <td><strong>Digital Marketing</strong></td>
+            <td><span class="tag">Business</span> <span class="tag">Digital</span></td>
+            <td><div class="pip-row"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div></div></td>
+            <td>IIM Bangalore</td>
+          </tr>
+          <tr>
+            <td><strong>Entrepreneurship &amp; Venture Building</strong></td>
+            <td><span class="tag">Business</span></td>
+            <td><div class="pip-row"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div><div class="pip"></div></div></td>
+            <td>IIM Bangalore</td>
+          </tr>
+          <tr>
+            <td><strong>Microsoft Excel / Data Analysis</strong></td>
+            <td><span class="tag">Tools</span></td>
+            <td><div class="pip-row"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div></div></td>
+            <td>Self-taught</td>
+          </tr>
+          <tr>
+            <td><strong>Communication &amp; Presentation</strong></td>
+            <td><span class="tag">Soft Skills</span></td>
+            <td><div class="pip-row"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div></div></td>
+            <td>Both institutions</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section class="section" id="hobbies">
+    <div class="section-head">
+      <span class="section-num">04 //</span>
+      <h2>INTERESTS</h2>
+    </div>
+    <div class="hobby-grid">
+      <div class="hobby">
+        <span class="hobby-icon">🚗</span>
+        <span class="hobby-name">CARS</span>
+        <span class="hobby-desc">Passionate about automotive design, performance &amp; technology</span>
+      </div>
+      <div class="hobby">
+        <span class="hobby-icon">💼</span>
+        <span class="hobby-name">ENTREPRENEURSHIP</span>
+        <span class="hobby-desc">Always thinking about ideas, markets &amp; building ventures</span>
+      </div>
+      <div class="hobby">
+        <span class="hobby-icon">💻</span>
+        <span class="hobby-name">TECHNOLOGY</span>
+        <span class="hobby-desc">Following the latest in tech, AI &amp; digital innovation</span>
+      </div>
+      <div class="hobby">
+        <span class="hobby-icon">⚽</span>
+        <span class="hobby-name">SPORTS</span>
+        <span class="hobby-desc">Competitive mindset both on and off the field</span>
+      </div>
+      <div class="hobby">
+        <span class="hobby-icon">🎵</span>
+        <span class="hobby-name">MUSIC</span>
+        <span class="hobby-desc">Good music for every mood, every drive, every grind</span>
+      </div>
+      <div class="hobby">
+        <span class="hobby-icon">✈️</span>
+        <span class="hobby-name">TRAVEL</span>
+        <span class="hobby-desc">Exploring new places, cultures &amp; perspectives</span>
+      </div>
+      <div class="hobby">
+        <span class="hobby-icon">🎮</span>
+        <span class="hobby-name">GAMING</span>
+        <span class="hobby-desc">Strategy, racing &amp; action — gaming sharpens the mind</span>
+      </div>
+      <div class="hobby">
+        <span class="hobby-icon">🏋️</span>
+        <span class="hobby-name">FITNESS</span>
+        <span class="hobby-desc">Staying consistent — discipline in the gym carries everywhere</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT BAND -->
+  <div class="contact-band" id="contact">
+    <h2>LET'S CONNECT</h2>
+    <p>I'm always open to interesting conversations, opportunities, and ideas.</p>
+    <div class="contact-links">
+      <a href="mailto:rudramidda7@gmail.com" class="contact-link">
+        ✉ rudramidda7@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/rudra-midda-42a983322/" target="_blank" class="contact-link">
+        🔗 LinkedIn
+      </a>
+      <a href="https://instagram.com/rudramidda" target="_blank" class="contact-link">
+        📸 @rudramidda
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">RUDRA MIDDA</span>
+      <span class="footer-copy">© 2026 · MIT Manipal &amp; IIM Bangalore · Udupi, Karnataka</span>
+    </div>
+  </footer>
+
+</body>
+</html>
